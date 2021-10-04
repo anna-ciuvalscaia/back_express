@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+<body>
+
+    <h1>HOME PAGE</h1>
+    <div id="content">
+      HERE LOAD PRODUCTS
+    </div>
+
+
+
+ <!-- <script> // ##### AJAX #####
+
+        let xhr = new XMLHttpRequest()
+
+        xhr.open("GET", "/api/products")
+
+        xhr.onload = function () {
+           let products = JSON.parse( xhr.responseText) 
+           console.log(products)
+
+           let div = document.getElementById("content")
+           // HW3. refactor for -> another method
+
+           products.forEach(({id, name, price} )=> {
+            div.innerHTML += 
+           `<div>
+               ${name}
+               ${price}
+               <button onclick="detProductDetails(${id})">view details</button>
+           </div>`
+           });
+
+           //for(let i = 0; i < products.length; i++) {
+           // div.innerHTML += 
+           // `<div>
+            //    ${products[i].name}
+            //    ${products[i].price}
+             //   <button onclick="detProductDetails(${products[i].id})">view details</button>
+           // </div>`
+    //}
+        }
+
+        xhr.send()
+
+        function detProductDetails (id) {
+
+            let xhr = new XMLHttpRequest()
+
+            xhr.open("GET", `/api/products/ ${id}`)
+
+            xhr.onload = function () {
+
+                   let product = JSON.parse( xhr.responseText) 
+                   let div = document.getElementById("content")
+
+                   div.innerHTML = ""
+                   div.innerHTML = `
+                   <h3>Product details</h3>
+                   <div>
+                    ${product.name}
+                    ${product.price}
+                    </div>
+                   `
+                 }
+                 xhr.send()
+        }
+    // ##### AJAX #####
+    </script>  --> 
+    
+
+
+ <!-- <script> // ##### FETCH #####
+        //HW2. refactor the code - fetch
+
+        async function  getProductData () {
+            let div = document.getElementById("content")
+            let url = `/api/products`;
+            let response = await fetch(url);
+
+           let products = await response.json();
+            products.forEach(({id, name, price} )=> {
+            div.innerHTML += 
+           `<div>
+               ${name}
+               ${price}
+               <button onclick="getProductDetails(${id})">view details</button>
+           </div>`
+           }); 
+         
+        }
+
+        async function  getProductDetails (id) {
+            let div = document.getElementById("content")
+            let url = `/api/products/ ${id}` ;
+            let response = await fetch(url);
+
+           let product = await response.json();
+           div.innerHTML = ""
+                   div.innerHTML = `
+                   <h3>Product details</h3>
+                   <div>
+                    ${product.name}
+                    ${product.price}
+                    </div>
+                   `
+                   
+        }
+
+ getProductData ()  
+
+        
+    // ##### FETCH #####
+    </script>  -->  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        //HW4. try to use axios
+      
+axios.get('/api/products')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+    </script>
+    
+</body>
+</html>
